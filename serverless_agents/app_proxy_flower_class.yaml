@@ -1,0 +1,47 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: app-proxy-flower-class
+  namespace: vps-apps
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/class: "kpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/max-scale: "2"
+        autoscaling.knative.dev/min-scale: "0"
+        autoscaling.knative.dev/scaleDownDelay: "30s"
+        autoscaling.knative.dev/scale-to-zero-pod-retention-period: "1m5s"
+        autoscaling.knative.dev/target: "15"
+        autoscaling.knative.dev/metric: "rps"
+        autoscaling.knative.dev/terminationGracePeriodSeconds: "60"
+    spec:
+      timeoutSeconds: 60
+      containers:
+      - name: app-proxy
+        image: 730335200563.dkr.ecr.ap-south-1.amazonaws.com/vps-apps-proxy:latest
+        ports:
+        - containerPort: 8080  # Ensure Streamlit listens on this port
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        env:
+        - name: STREAMLIT_APP_URL
+          value: "http://localhost:8051"  # Assuming Streamlit runs on port 8051
+      - name: streamlit-app
+        image: 730335200563.dkr.ecr.ap-south-1.amazonaws.com/vps-apps-flower-class:latest
+        resources:
+          limits:
+            cpu: 1
+            memory: 1Gi
+          requests:
+            cpu: 0.1
+            memory: 100Mi
+        env:
+        - name: PROJECT_ID
+          value: "app_id"
+        - name: STREAMLIT_PORT
+          value: "8051" # Set this to the desired port
+

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devpi
+  namespace: vps-tools
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devpi
+  template:
+    metadata:
+      labels:
+        app: devpi
+    spec:
+      containers:
+      - name: devpi-server
+        image: us-east1-docker.pkg.dev/ai-platform-414410/vps-repo/devpi-server:latest
+        resources:
+          requests:
+            cpu: "500m"
+          limits:
+            cpu: "1"
+        volumeMounts:
+        - name: devpi-storage  # This name links to the volume name below.
+          mountPath: "/data"  # The path inside the container where the volume will be mounted.
+        ports:
+        - containerPort: 3141
+      volumes:
+      - name: devpi-storage  # This name must match the name used in volumeMounts.
+        persistentVolumeClaim:
+          claimName: devpi-gcs-fuse-pvc  # This must match the name of your PVC.
+

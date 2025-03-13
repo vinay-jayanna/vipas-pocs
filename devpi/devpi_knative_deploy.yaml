@@ -1,0 +1,38 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: devpi
+  namespace: vps-tools
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/target: "70"
+        autoscaling.knative.dev/metric: "cpu"
+    spec:
+      containers:
+      - image: us-east1-docker.pkg.dev/ai-platform-414410/vps-repo/devpi-server:latest
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "500Mi"
+        ports:
+        - name: http1
+          containerPort: 3141
+        env:
+        - name: DEVPISERVER_SERVERDIR
+          value: "/data"
+        volumeMounts:
+        - name: devpi-storage
+          mountPath: "/data"
+      volumes:
+      - name: devpi-storage
+        persistentVolumeClaim:
+          claimName: devpi-pvc
+

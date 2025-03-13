@@ -1,0 +1,87 @@
+
+
+
+
+aws cloudformation create-stack \
+  --region ap-south-1 \
+  --stack-name vps-control-vpc-stack \
+  --template-url https://s3.us-west-2.amazonaws.com/amazon-eks/cloudformation/2020-10-29/amazon-eks-vpc-private-subnets.yaml
+
+## {
+##    "StackId": "arn:aws:cloudformation:ap-south-1:730335200563:stack/vps-control-vpc-stack/16617600-d614-11ee-896c-0a8a55f212d1"
+## }
+
+
+
+
+cat vps-control-cluster-role-trust-policy.json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "eks.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+  aws iam create-role \
+  --role-name vpsControlClusterRole \
+  --assume-role-policy-document file://"vps-control-cluster-role-trust-policy.json"
+
+
+
+aws iam attach-role-policy \
+  --policy-arn arn:aws:iam::aws:policy/AmazonEKSClusterPolicy \
+  --role-name vpsControlClusterRole
+
+
+
+aws eks update-kubeconfig --region ap-south-1 --name vps-control-cluster
+
+
+
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+
+
+aws iam create-role \
+  --role-name vpsControlNodeRole \
+  --assume-role-policy-document file://"node-role-trust-policy.json"
+
+
+
+
+aws iam attach-role-policy \
+  --policy-arn arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy \
+  --role-name vpsControlNodeRole
+aws iam attach-role-policy \
+  --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly \
+  --role-name vpsControlNodeRole
+aws iam attach-role-policy \
+  --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy \
+  --role-name vpsControlNodeRole
+
+
+
+
+
+
+
+
+
+aws eks --region ap-south-1 update-kubeconfig --name vps-control-cluster 

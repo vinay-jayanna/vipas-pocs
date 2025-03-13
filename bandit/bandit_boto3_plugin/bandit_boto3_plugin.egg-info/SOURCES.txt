@@ -1,0 +1,8 @@
+setup.py
+bandit_boto3_plugin/__init__.py
+bandit_boto3_plugin/boto3_check.py
+bandit_boto3_plugin.egg-info/PKG-INFO
+bandit_boto3_plugin.egg-info/SOURCES.txt
+bandit_boto3_plugin.egg-info/dependency_links.txt
+bandit_boto3_plugin.egg-info/entry_points.txt
+bandit_boto3_plugin.egg-info/top_level.txt

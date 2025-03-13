@@ -1,0 +1,26 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: deploy-manager
+  namespace: vps-control
+spec:
+  template:
+    metadata:
+      annotations:
+        # Autoscaling annotations
+        autoscaling.knative.dev/class: "hpa.autoscaling.knative.dev"
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "3"
+        autoscaling.knative.dev/target: "70"
+        autoscaling.knative.dev/metric: "cpu"
+    spec:
+      containers:
+      - image: us-east1-docker.pkg.dev/ai-platform-414410/vps-repo/deploy-manager:latest
+        resources:
+          requests:
+            cpu: "50m" # Adjust as necessary
+            memory: "64Mi" # Adjust as necessary
+          limits:
+            cpu: "500m" # Adjust as necessary
+            memory: "500Mi" # Adjust as necessary
+

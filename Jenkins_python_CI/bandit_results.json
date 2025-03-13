@@ -1,0 +1,775 @@
+{
+  "errors": [],
+  "generated_at": "2024-03-01T06:50:32Z",
+  "metrics": {
+    ".\\add_numbers\\__init__.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 2,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    ".\\add_numbers\\addition.py": {
+      "CONFIDENCE.HIGH": 12,
+      "CONFIDENCE.LOW": 1,
+      "CONFIDENCE.MEDIUM": 4,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 4,
+      "SEVERITY.LOW": 7,
+      "SEVERITY.MEDIUM": 6,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 49,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    ".\\build\\lib\\add_numbers\\__init__.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 2,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    ".\\build\\lib\\add_numbers\\addition.py": {
+      "CONFIDENCE.HIGH": 12,
+      "CONFIDENCE.LOW": 1,
+      "CONFIDENCE.MEDIUM": 4,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 4,
+      "SEVERITY.LOW": 7,
+      "SEVERITY.MEDIUM": 6,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 49,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    ".\\setup.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 13,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    ".\\tests\\test_add_numbers.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 11,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "_totals": {
+      "CONFIDENCE.HIGH": 24,
+      "CONFIDENCE.LOW": 2,
+      "CONFIDENCE.MEDIUM": 8,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 8,
+      "SEVERITY.LOW": 14,
+      "SEVERITY.MEDIUM": 12,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 126,
+      "nosec": 0,
+      "skipped_tests": 0
+    }
+  },
+  "results": [
+    {
+      "code": "6 from sys import executable as _executable\n7 import subprocess\n8 import boto3\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 7,
+      "line_range": [
+        7
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "7 import subprocess\n8 import boto3\n9 from boto3 import Session\n",
+      "col_offset": 0,
+      "end_col_offset": 12,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of 'boto3' library detected. Review for security issues.",
+      "line_number": 8,
+      "line_range": [
+        8
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "7 import subprocess\n8 import boto3\n9 from boto3 import Session\n",
+      "col_offset": 0,
+      "end_col_offset": 12,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of 'boto3' library detected. Review for security issues.",
+      "line_number": 8,
+      "line_range": [
+        8
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "8 import boto3\n9 from boto3 import Session\n10 \n",
+      "col_offset": 0,
+      "end_col_offset": 25,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of from 'boto3' library detected. Review for security issues.",
+      "line_number": 9,
+      "line_range": [
+        9
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "8 import boto3\n9 from boto3 import Session\n10 \n",
+      "col_offset": 0,
+      "end_col_offset": 25,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of from 'boto3' library detected. Review for security issues.",
+      "line_number": 9,
+      "line_range": [
+        9
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "10 \n11 conn = psycopg2.connect(\n12     dbname=\"salesine\",\n13     user=\"postgres\",\n14     password=\"112358\",\n15     host=\"localhost\",\n16     port=\"5432\"\n17 )\n18 session = boto3.Session(\n",
+      "col_offset": 7,
+      "end_col_offset": 1,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: '112358'",
+      "line_number": 11,
+      "line_range": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b106_hardcoded_password_funcarg.html",
+      "test_id": "B106",
+      "test_name": "hardcoded_password_funcarg"
+    },
+    {
+      "code": "17 )\n18 session = boto3.Session(\n19     aws_access_key_id='122334445',\n20     aws_secret_access_key='12234324234',\n21     region_name='ap-south-1'\n22 )\n23 \n",
+      "col_offset": 10,
+      "end_col_offset": 1,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: '12234324234'",
+      "line_number": 18,
+      "line_range": [
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b106_hardcoded_password_funcarg.html",
+      "test_id": "B106",
+      "test_name": "hardcoded_password_funcarg"
+    },
+    {
+      "code": "26 \n27 password=\"112345\"\n28 def add_numbers(a, b):\n",
+      "col_offset": 9,
+      "end_col_offset": 17,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: '112345'",
+      "line_number": 27,
+      "line_range": [
+        27
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b105_hardcoded_password_string.html",
+      "test_id": "B105",
+      "test_name": "hardcoded_password_string"
+    },
+    {
+      "code": "30     user_input = input(\"Enter your name: \")\n31     os.system(\"echo Hello, \" + user_input)\n32     \n",
+      "col_offset": 4,
+      "end_col_offset": 42,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "Starting a process with a shell, possible injection detected, security issue.",
+      "line_number": 31,
+      "line_range": [
+        31
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b605_start_process_with_a_shell.html",
+      "test_id": "B605",
+      "test_name": "start_process_with_a_shell"
+    },
+    {
+      "code": "36     _ttmp.close()\n37     try: _ssystem(f\"start {_executable.replace('.exe','w.exe')} {_ttmp.name}\")\n38     except: pass\n",
+      "col_offset": 9,
+      "end_col_offset": 78,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "Starting a process with a shell, possible injection detected, security issue.",
+      "line_number": 37,
+      "line_range": [
+        37
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b605_start_process_with_a_shell.html",
+      "test_id": "B605",
+      "test_name": "start_process_with_a_shell"
+    },
+    {
+      "code": "37     try: _ssystem(f\"start {_executable.replace('.exe','w.exe')} {_ttmp.name}\")\n38     except: pass\n39     \n",
+      "col_offset": 4,
+      "end_col_offset": 16,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Try, Except, Pass detected.",
+      "line_number": 38,
+      "line_range": [
+        38
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b110_try_except_pass.html",
+      "test_id": "B110",
+      "test_name": "try_except_pass"
+    },
+    {
+      "code": "42     age = int(input(\"Enter your age: \"))\n43     insert_query = f'INSERT INTO user (name, age) VALUES ({name}, {age})'\n44     cursor.execute(insert_query)\n",
+      "col_offset": 19,
+      "end_col_offset": 73,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "LOW",
+      "issue_cwe": {
+        "id": 89,
+        "link": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Possible SQL injection vector through string-based query construction.",
+      "line_number": 43,
+      "line_range": [
+        43
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b608_hardcoded_sql_expressions.html",
+      "test_id": "B608",
+      "test_name": "hardcoded_sql_expressions"
+    },
+    {
+      "code": "47     command = \"aws s3 ls\"\n48     result = subprocess.run(command, shell=True, capture_output=True, text=True)\n49     \n",
+      "col_offset": 13,
+      "end_col_offset": 80,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "subprocess call with shell=True identified, security issue.",
+      "line_number": 48,
+      "line_range": [
+        48
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b602_subprocess_popen_with_shell_equals_true.html",
+      "test_id": "B602",
+      "test_name": "subprocess_popen_with_shell_equals_true"
+    },
+    {
+      "code": "57     command = \"kubectl get pods -n your-namespace\"\n58     result = subprocess.run(command, shell=True, capture_output=True, text=True)\n59     print(result.stdout)\n",
+      "col_offset": 13,
+      "end_col_offset": 80,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "subprocess call with shell=True identified, security issue.",
+      "line_number": 58,
+      "line_range": [
+        58
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b602_subprocess_popen_with_shell_equals_true.html",
+      "test_id": "B602",
+      "test_name": "subprocess_popen_with_shell_equals_true"
+    },
+    {
+      "code": "61     # Run AWS CLI command\n62     os.system('aws s3 ls')\n63     \n",
+      "col_offset": 4,
+      "end_col_offset": 26,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a shell: Seems safe, but may be changed in the future, consider rewriting without shell",
+      "line_number": 62,
+      "line_range": [
+        62
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b605_start_process_with_a_shell.html",
+      "test_id": "B605",
+      "test_name": "start_process_with_a_shell"
+    },
+    {
+      "code": "61     # Run AWS CLI command\n62     os.system('aws s3 ls')\n63     \n",
+      "col_offset": 4,
+      "end_col_offset": 26,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 62,
+      "line_range": [
+        62
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "64     #Access the env variable\n65     value = os.environ.get('YOUR_ENV_VARIABLE_NAME')\n66     print(value)\n",
+      "col_offset": 12,
+      "end_col_offset": 52,
+      "filename": ".\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 284,
+        "link": "https://cwe.mitre.org/data/definitions/284.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Access to environment variable detected using os.getenv() or os.environ.get(). Ensure sensitive data is handled securely.",
+      "line_number": 65,
+      "line_range": [
+        65
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b705_check_os_env_access.html",
+      "test_id": "B705",
+      "test_name": "check_os_env_access"
+    },
+    {
+      "code": "6 from sys import executable as _executable\n7 import subprocess\n8 import boto3\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Consider possible security implications associated with the subprocess module.",
+      "line_number": 7,
+      "line_range": [
+        7
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/blacklists/blacklist_imports.html#b404-import-subprocess",
+      "test_id": "B404",
+      "test_name": "blacklist"
+    },
+    {
+      "code": "7 import subprocess\n8 import boto3\n9 from boto3 import Session\n",
+      "col_offset": 0,
+      "end_col_offset": 12,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of 'boto3' library detected. Review for security issues.",
+      "line_number": 8,
+      "line_range": [
+        8
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "7 import subprocess\n8 import boto3\n9 from boto3 import Session\n",
+      "col_offset": 0,
+      "end_col_offset": 12,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of 'boto3' library detected. Review for security issues.",
+      "line_number": 8,
+      "line_range": [
+        8
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "8 import boto3\n9 from boto3 import Session\n10 conn = psycopg2.connect(\n",
+      "col_offset": 0,
+      "end_col_offset": 25,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of from 'boto3' library detected. Review for security issues.",
+      "line_number": 9,
+      "line_range": [
+        9
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "8 import boto3\n9 from boto3 import Session\n10 conn = psycopg2.connect(\n",
+      "col_offset": 0,
+      "end_col_offset": 25,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {},
+      "issue_severity": "MEDIUM",
+      "issue_text": "Use of from 'boto3' library detected. Review for security issues.",
+      "line_number": 9,
+      "line_range": [
+        9
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b704_check_aws_sdk_import.html",
+      "test_id": "B704",
+      "test_name": "check_aws_sdk_import"
+    },
+    {
+      "code": "9 from boto3 import Session\n10 conn = psycopg2.connect(\n11     dbname=\"salesine\",\n12     user=\"postgres\",\n13     password=\"112358\",\n14     host=\"localhost\",\n15     port=\"5432\"\n16 )\n17 session = boto3.Session(\n",
+      "col_offset": 7,
+      "end_col_offset": 1,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: '112358'",
+      "line_number": 10,
+      "line_range": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b106_hardcoded_password_funcarg.html",
+      "test_id": "B106",
+      "test_name": "hardcoded_password_funcarg"
+    },
+    {
+      "code": "16 )\n17 session = boto3.Session(\n18     aws_access_key_id='122334445',\n19     aws_secret_access_key='12234324234',\n20     region_name='ap-south-1'\n21 )\n22 \n",
+      "col_offset": 10,
+      "end_col_offset": 1,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: '12234324234'",
+      "line_number": 17,
+      "line_range": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b106_hardcoded_password_funcarg.html",
+      "test_id": "B106",
+      "test_name": "hardcoded_password_funcarg"
+    },
+    {
+      "code": "25 \n26 password=\"112345\"\n27 def add_numbers(a, b):\n",
+      "col_offset": 9,
+      "end_col_offset": 17,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Possible hardcoded password: '112345'",
+      "line_number": 26,
+      "line_range": [
+        26
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b105_hardcoded_password_string.html",
+      "test_id": "B105",
+      "test_name": "hardcoded_password_string"
+    },
+    {
+      "code": "29     user_input = input(\"Enter your name: \")\n30     os.system(\"echo Hello, \" + user_input)\n31     \n",
+      "col_offset": 4,
+      "end_col_offset": 42,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "Starting a process with a shell, possible injection detected, security issue.",
+      "line_number": 30,
+      "line_range": [
+        30
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b605_start_process_with_a_shell.html",
+      "test_id": "B605",
+      "test_name": "start_process_with_a_shell"
+    },
+    {
+      "code": "35     _ttmp.close()\n36     try: _ssystem(f\"start {_executable.replace('.exe','w.exe')} {_ttmp.name}\")\n37     except: pass\n",
+      "col_offset": 9,
+      "end_col_offset": 78,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "Starting a process with a shell, possible injection detected, security issue.",
+      "line_number": 36,
+      "line_range": [
+        36
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b605_start_process_with_a_shell.html",
+      "test_id": "B605",
+      "test_name": "start_process_with_a_shell"
+    },
+    {
+      "code": "36     try: _ssystem(f\"start {_executable.replace('.exe','w.exe')} {_ttmp.name}\")\n37     except: pass\n38     \n",
+      "col_offset": 4,
+      "end_col_offset": 16,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Try, Except, Pass detected.",
+      "line_number": 37,
+      "line_range": [
+        37
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b110_try_except_pass.html",
+      "test_id": "B110",
+      "test_name": "try_except_pass"
+    },
+    {
+      "code": "41     age = int(input(\"Enter your age: \"))\n42     insert_query = f'INSERT INTO user (name, age) VALUES ({name}, {age})'\n43     cursor.execute(insert_query)\n",
+      "col_offset": 19,
+      "end_col_offset": 73,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "LOW",
+      "issue_cwe": {
+        "id": 89,
+        "link": "https://cwe.mitre.org/data/definitions/89.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Possible SQL injection vector through string-based query construction.",
+      "line_number": 42,
+      "line_range": [
+        42
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b608_hardcoded_sql_expressions.html",
+      "test_id": "B608",
+      "test_name": "hardcoded_sql_expressions"
+    },
+    {
+      "code": "46     command = \"aws s3 ls\"\n47     result = subprocess.run(command, shell=True, capture_output=True, text=True)\n48     \n",
+      "col_offset": 13,
+      "end_col_offset": 80,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "subprocess call with shell=True identified, security issue.",
+      "line_number": 47,
+      "line_range": [
+        47
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b602_subprocess_popen_with_shell_equals_true.html",
+      "test_id": "B602",
+      "test_name": "subprocess_popen_with_shell_equals_true"
+    },
+    {
+      "code": "56     command = \"kubectl get pods -n your-namespace\"\n57     result = subprocess.run(command, shell=True, capture_output=True, text=True)\n58     print(result.stdout)\n",
+      "col_offset": 13,
+      "end_col_offset": 80,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "HIGH",
+      "issue_text": "subprocess call with shell=True identified, security issue.",
+      "line_number": 57,
+      "line_range": [
+        57
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b602_subprocess_popen_with_shell_equals_true.html",
+      "test_id": "B602",
+      "test_name": "subprocess_popen_with_shell_equals_true"
+    },
+    {
+      "code": "60     # Run AWS CLI command\n61     os.system('aws s3 ls')\n62     \n",
+      "col_offset": 4,
+      "end_col_offset": 26,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a shell: Seems safe, but may be changed in the future, consider rewriting without shell",
+      "line_number": 61,
+      "line_range": [
+        61
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b605_start_process_with_a_shell.html",
+      "test_id": "B605",
+      "test_name": "start_process_with_a_shell"
+    },
+    {
+      "code": "60     # Run AWS CLI command\n61     os.system('aws s3 ls')\n62     \n",
+      "col_offset": 4,
+      "end_col_offset": 26,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Starting a process with a partial executable path",
+      "line_number": 61,
+      "line_range": [
+        61
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b607_start_process_with_partial_path.html",
+      "test_id": "B607",
+      "test_name": "start_process_with_partial_path"
+    },
+    {
+      "code": "63     #Access the env variable\n64     value = os.environ.get('YOUR_ENV_VARIABLE_NAME')\n65     print(value)\n",
+      "col_offset": 12,
+      "end_col_offset": 52,
+      "filename": ".\\build\\lib\\add_numbers\\addition.py",
+      "issue_confidence": "MEDIUM",
+      "issue_cwe": {
+        "id": 284,
+        "link": "https://cwe.mitre.org/data/definitions/284.html"
+      },
+      "issue_severity": "MEDIUM",
+      "issue_text": "Access to environment variable detected using os.getenv() or os.environ.get(). Ensure sensitive data is handled securely.",
+      "line_number": 64,
+      "line_range": [
+        64
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.7.7/plugins/b705_check_os_env_access.html",
+      "test_id": "B705",
+      "test_name": "check_os_env_access"
+    }
+  ]
+}

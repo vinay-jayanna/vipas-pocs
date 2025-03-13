@@ -1,0 +1,28 @@
+apiVersion: "serving.kserve.io/v1beta1"
+kind: "InferenceService"
+metadata:
+  name: "flower-class-1"
+  namespace: "vps-models"
+  annotations:
+    autoscaling.knative.dev/target: "15"
+    autoscaling.knative.dev/metric: "rps"
+    autoscaling.knative.dev/max-scale: "3"
+    autoscaling.knative.dev/class: "kpa.autoscaling.knative.dev"
+    autoscaling.knative.dev/min-scale: "0"
+    autoscaling.knative.dev/terminationGracePeriodSeconds: "30"
+    autoscaling.knative.dev/scale-to-zero-pod-retention-period: "1m30s"
+spec:
+  predictor:
+    timeout: 10
+    minReplicas: 0
+    model:
+      modelFormat:
+        name: tensorflow
+      storageUri: "s3://vps-models/samples/tensorflow/flower-class/1.0/model"
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 100m
+          memory: 500Mi

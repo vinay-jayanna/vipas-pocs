@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+    environment {
+        AWS_CREDENTIALS = 'AWS_Credentials'
+    }
+    stages {
+        stage('Checkout and Install Custom Plugin') {
+            steps {
+                // Checkout the code from the repository
+                sh "pip uninstall vps-plugin -y"
+                script {
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS , accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                        sh "aws codeartifact login --tool pip --repository ManagedPackageTeam --domain vipas-domain --domain-owner 730335200563 --region ap-south-1"
+                    }                
+                }
+                // Install the custom plugin using pip
+                sh "pip install --no-cache-dir vps-plugin"
+            }
+        }
+        stage('Download File from S3') {
+            steps {
+                script {
+                    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: AWS_CREDENTIALS , accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                        sh "aws s3 sync s3://vps-test-jenkins/ ."
+                    }
+                }
+                sh "cat add_numbers/addition.py"
+            }
+        }
+
+        stage('Security Test with Bandit') {
+            steps {
+                script {
+                    sh "pip list && bandit -h"
+                    sh "bandit -r . -f json -o bandit_results.json || exit 0"
+                    archiveArtifacts artifacts: 'bandit_results.json', fingerprint: true
+                    def banditResults = readJSON file: 'bandit_results.json'
+                    
+                    if (banditResults.metrics._totals["SEVERITY.HIGH"] > 0) {
+                        error "High severity issues found by Bandit. Pipeline aborted."
+                    }
+                }
+            }
+        }
+
+        stage('Run Python Script') {
+            steps {
+                // Execute the Python script
+                sh "python3 add_numbers/addition.py"
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                script {
+                    // Run the Python unit tests
+                    sh "python3 -m unittest tests/test_add_numbers.py"
+                }
+            }
+        }
+        stage('Build .whl File') {
+            steps {
+                sh "python3 setup.py bdist_wheel"
+            }
+        }
+        
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+            }
+        }
+    }
+}

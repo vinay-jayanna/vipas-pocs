@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: app.app_id
+Version: 0.1.0
+Summary: A Streamlit app package example
+Home-page: URL to your project homepage or source repository
+Author: Your Name
+Author-email: your.email@example.com
+Keywords: streamlit python package
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Dist: streamlit
+Requires-Dist: requests
+Requires-Dist: Pillow

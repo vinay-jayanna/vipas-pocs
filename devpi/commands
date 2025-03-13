@@ -1,0 +1,5 @@
+pip download -i http://devpi.vps-tools.34.23.19.70.sslip.io/root/pypi/+simple/ --trusted-host devpi.vps-tools.34.23.19.70.sslip.io simplejson
+
+pip install -i http://devpi.vps-tools.34.23.19.70.sslip.io/root/pypi/+simple/ --trusted-host devpi.vps-tools.34.23.19.70.sslip.io simplejson
+
+

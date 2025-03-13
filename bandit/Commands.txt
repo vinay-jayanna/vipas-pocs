@@ -1,0 +1,179 @@
+mkdir bandit_boto3_plugin
+touch setup.py
+mkdir bandit_boto3_plugin
+touch bandit_boto3_plugin/__init__.py
+touch bandit_boto3_plugin/boto3_check.py
+vi setup.py 
+##
+
+from setuptools import setup, find_packages
+
+setup(
+    name='bandit_boto3_plugin',
+    version='0.1',
+    packages=find_packages(),
+    entry_points={
+        'bandit.plugins': [
+            'boto3_check = bandit_boto3_plugin.boto3_check:boto3_import',
+        ],
+    }
+)
+
+
+
+##
+
+
+vi bandit_boto3_plugin/boto3_check.py 
+
+##
+
+#
+# Custom Bandit plugin to detect imports of 'boto3'
+#
+
+import bandit
+from bandit.core import issue
+from bandit.core import test_properties as test
+
+@test.test_id("B307")
+@test.checks("Import")
+def boto3_import(context):
+    if context.is_module_imported_exact("boto3"):
+        return bandit.Issue(
+            severity=bandit.MEDIUM,
+            confidence=bandit.HIGH,
+            cwe=issue.Cwe.IMPROPER_ACCESS_CONTROL,
+            text="Use of 'boto3' module detected. The import of 'boto3' "
+                 "is discouraged in this project due to security or compliance reasons.",
+            lineno=context.node.lineno,
+        )
+
+
+
+
+
+##
+
+pip install -e .
+
+bandit -h | grep -i boto
+bandit -h
+cd ..
+
+
+vinayjv:~/Desktop/Vipas/bandit $ bandit vulnerable_script.py 
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.11.5
+Run started:2024-02-29 09:07:36.173351
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.7/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: ./vulnerable_script.py:1:0
+1	import subprocess
+2	import requests
+3	import boto3
+
+--------------------------------------------------
+>> Issue: [B307:boto3_import] Use of 'boto3' module detected. The import of 'boto3' is discouraged in this project due to security or compliance reasons.
+   Severity: Medium   Confidence: High
+   CWE: CWE-284 (https://cwe.mitre.org/data/definitions/284.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.7/plugins/b307_boto3_import.html
+   Location: ./vulnerable_script.py:3:0
+2	import requests
+3	import boto3
+4	
+
+--------------------------------------------------
+>> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.7/plugins/b602_subprocess_popen_with_shell_equals_true.html
+   Location: ./vulnerable_script.py:13:4
+12	    # Vulnerable to command injection
+13	    subprocess.call(f"echo {user_input}", shell=True)
+14	
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Requests call without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.7/plugins/b113_request_without_timeout.html
+   Location: ./vulnerable_script.py:16:15
+15	def insecure_http_request():
+16	    response = requests.get("http://example.com")
+17	    print(response.text)
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 18
+	Total lines skipped (#nosec): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 1
+		Medium: 2
+		High: 1
+	Total issues (by confidence):
+		Undefined: 0
+
+
+
+
+
+
+
+
+
+
+vinayjv:~/Desktop/Vipas/bandit $ bandit vulnerable_script.py -t B307
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: B307
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.11.5
+Run started:2024-02-29 09:00:06.605569
+
+Test results:
+>> Issue: [B307:boto3_import] Use of 'boto3' module detected. The import of 'boto3' is discouraged in this project due to security or compliance reasons.
+   Severity: Medium   Confidence: High
+   CWE: CWE-284 (https://cwe.mitre.org/data/definitions/284.html)
+   More Info: https://bandit.readthedocs.io/en/1.7.7/plugins/b307_boto3_import.html
+   Location: ./vulnerable_script.py:3:0
+2	import requests
+3	import boto3
+4	
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 18
+	Total lines skipped (#nosec): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 1
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 1
+Files skipped (0):
+
+
+		Low: 1
+		Medium: 0
+		High: 3
+Files skipped (0):
+
